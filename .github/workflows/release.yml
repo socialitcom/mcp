@@ -1,6 +1,7 @@
 # A tag v<version> (the version of package.json and server.json) publishes @socialit/mcp to npm with
-# provenance, the server to the MCP Registry (io.github.socialitcom/mcp, GitHub OIDC: no registry token)
-# and a GitHub release. Secret: NPM_TOKEN (npm automation token with publish rights on @socialit).
+# provenance, the server to the MCP Registry (io.github.socialitcom/mcp) and a GitHub release. No
+# secrets: npm trusts this workflow (trusted publishing, `npm trust github @socialit/mcp --file
+# release.yml --repo socialitcom/mcp`) and the registry signs in with GitHub OIDC.
 name: Release
 
 on:
@@ -37,6 +38,9 @@ jobs:
       - run: npm ci
       - run: npm test
 
+      # Trusted publishing needs npm 11.5.1 or later.
+      - run: npm install --global npm@^11.15.0
+
       - name: Publish to npm
         run: |
           if npm view "@socialit/mcp@${GITHUB_REF_NAME#v}" version >/dev/null 2>&1; then
@@ -44,8 +48,6 @@ jobs:
           else
             npm publish --provenance --access public
           fi
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Install cosign
         uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
