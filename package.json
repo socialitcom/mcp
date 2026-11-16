@@ -1,0 +1,57 @@
+{
+  "name": "@socialit/mcp",
+  "version": "1.0.0",
+  "description": "The Socialit MCP server: let Claude, Cursor and other AI assistants schedule posts, answer DMs and comments, and read analytics across your social accounts, with a Socialit API key.",
+  "mcpName": "io.github.socialitcom/mcp",
+  "type": "module",
+  "bin": {
+    "socialit-mcp": "src/cli.js"
+  },
+  "exports": "./src/proxy.js",
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/cli.js",
+    "test": "node --test --test-reporter=spec test/proxy.test.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2"
+  },
+  "devDependencies": {
+    "zod": "^4.1.0"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "mcp-server",
+    "social-media",
+    "social-media-management",
+    "scheduling",
+    "instagram",
+    "linkedin",
+    "tiktok",
+    "socialit",
+    "claude",
+    "cursor"
+  ],
+  "homepage": "https://socialit.com/docs/mcp/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/socialitcom/mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/socialitcom/mcp/issues"
+  },
+  "author": "FunFirst s.r.o. <support@socialit.com> (https://socialit.com)",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}

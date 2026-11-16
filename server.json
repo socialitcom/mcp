@@ -1,0 +1,65 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.socialitcom/mcp",
+  "title": "Socialit",
+  "description": "Schedule social posts, answer DMs and comments, read analytics, run CRM automations and ads.",
+  "websiteUrl": "https://socialit.com/docs/mcp/",
+  "repository": {
+    "url": "https://github.com/socialitcom/mcp",
+    "source": "github"
+  },
+  "version": "1.0.0",
+  "icons": [
+    {
+      "src": "https://socialit.com/web-app-manifest-512x512.png",
+      "mimeType": "image/png",
+      "sizes": ["512x512"]
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@socialit/mcp",
+      "version": "1.0.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "SOCIALIT_API_KEY",
+          "description": "A Socialit workspace API key (sk_live_...), from Manage, API keys",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        },
+        {
+          "name": "SOCIALIT_TOOLSETS",
+          "description": "Only these toolsets, comma-separated, such as posts,media,accounts,analytics",
+          "isRequired": false,
+          "format": "string"
+        },
+        {
+          "name": "SOCIALIT_READ_ONLY",
+          "description": "true: only tools that change nothing",
+          "isRequired": false,
+          "format": "boolean"
+        }
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.socialit.com/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Optional: Bearer and a Socialit API key (Bearer sk_live_...). Without it, clients sign in with OAuth.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
